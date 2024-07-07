@@ -1,0 +1,4 @@
+[submodule "godot"]
+	path = godot
+	url = git@github.com:JiepengTan/godot.git
+	branch = libgodot_llgo
