@@ -8,11 +8,7 @@ find_package(Threads REQUIRED)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++17 -g")
 
-set(GODOT_CPP_DIR ${CMAKE_CURRENT_SOURCE_DIR}/../../godot-cpp)
 set(LIBGODOT_BUILD_DIR ${CMAKE_CURRENT_SOURCE_DIR}/../../build)
-
-#add_subdirectory(${GODOT_CPP_DIR} ${GODOT_CPP_DIR}/build)
-
 set(SOURCES src/main.cpp)
 
 add_executable(${PROJECT_NAME} ${SOURCES})

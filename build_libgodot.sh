@@ -80,17 +80,6 @@ do
     shift
 done
 
-if [ "$target_platform" = "ios" ]
-then
-    target_arch="arm64"
-    target="template_release"
-    lib_suffix="a"
-    if [ $simulator -eq 1 ]
-    then
-        target_build_options="$target_build_options ios_simulator=true"
-        target_arch="$host_arch"
-    fi
-fi
 
 if [ "$target_arch" = "" ]
 then
