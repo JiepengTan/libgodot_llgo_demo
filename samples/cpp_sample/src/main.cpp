@@ -50,7 +50,11 @@ typedef GDExtensionBool (*GDExtensionInitializationFunction)(GDExtensionInterfac
 
 class LibGodot {
 private:
+#if defined(__APPLE__) || defined(__unix__)
+    void *handle = nullptr;
+#elif defined(_WIN32)
 	HINSTANCE handle = NULL;
+#endif
     void print_lib_error(const char* errorMessage) {
 #if defined(__APPLE__) || defined(__unix__)
         fprintf(stderr, "%s %s\n", errorMessage,  dlerror());
@@ -96,7 +100,7 @@ public:
 
 	~LibGodot() {
 		if (is_open()) {
-			FreeLibrary(handle);
+			freelib();
 		}
 	}
 
