@@ -7,8 +7,9 @@ this repo is base on the [libgodot](https://github.com/migeran/libgodot_project)
 pip install scons
 pip install ninja 
 
-git clone --recursive git@github.com:JiepengTan/libgodot_llgo_demo.git
+git clone git@github.com:JiepengTan/libgodot_llgo_demo.git
 cd libgodot_llgo_demo
+git submodule update --init --progress --depth 1 godot
 ```
 
 ## windows
