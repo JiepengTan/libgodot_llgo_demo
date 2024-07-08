@@ -30,6 +30,8 @@ sample.exe
 ```
 
 ## linux or mac
+mac should install[Vulkan SDK](https://sdk.lunarg.com/sdk/download/latest/mac/vulkan-sdk.dmg)first
+
 ```bash
 # build godot
 ./build_libgodot.sh
