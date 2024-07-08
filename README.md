@@ -1,7 +1,7 @@
 # libgodot llgo demo
 
 this repo is base on the [libgodot](https://github.com/migeran/libgodot_project): 
-## prepare
+## setup environment
 
 ```bash
 pip install scons
