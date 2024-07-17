@@ -1,0 +1,10 @@
+prefix=/home/tanjp/projects/libgodot_project/godot_llgo_demo/samples/llgo_sample/build/
+exec_prefix=${prefix}
+libdir=${exec_prefix}
+includedir=${prefix}
+
+Name: godot
+Description: A simple godot world library
+Version: 1.0.0
+Libs: -L${libdir} -lgodot
+Cflags: -I${includedir}

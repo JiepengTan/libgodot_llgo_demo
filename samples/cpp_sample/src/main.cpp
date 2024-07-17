@@ -108,8 +108,8 @@ public:
 		return handle != NULL && func_libgodot_create_godot_instance != NULL;
 	}
 
-	GDExtensionObjectPtr create_instance(int p_argc, char *p_argv[], GDExtensionInitializationFunction p_init_func) {
-		return func_libgodot_create_godot_instance(p_argc, p_argv, p_init_func, handle);
+	GDExtensionObjectPtr create(int p_argc, char *p_argv[]) {
+		return func_libgodot_create_godot_instance(p_argc, p_argv, handle);
 	}
 
 	void destroy(GDExtensionObjectPtr instance) {
@@ -143,7 +143,7 @@ private:
 	}
 
 private:
-	GDExtensionObjectPtr (*func_libgodot_create_godot_instance)(int, char *[], GDExtensionInitializationFunction, void *) = NULL;
+	GDExtensionObjectPtr (*func_libgodot_create_godot_instance)(int, char *[], void *) = NULL;
 	void (*func_libgodot_destroy_godot_instance)(GDExtensionObjectPtr) = NULL;
 	bool (*func_libgodot_start_godot_instance)(GDExtensionObjectPtr) = NULL;
 	bool (*func_libgodot_iteration_godot_instance)(GDExtensionObjectPtr) = NULL;
@@ -167,7 +167,7 @@ int main(int argc, char **argv) {
 		argvs.push_back((char *)arg.data());
 	}
 	argvs.push_back(nullptr);
-	GDExtensionObjectPtr instance = libgodot.create_instance(argvs.size(), argvs.data(), nullptr);
+	GDExtensionObjectPtr instance = libgodot.create(argvs.size(), argvs.data());
 	if (instance == nullptr) {
 		fprintf(stderr, "Error creating Godot instance\n");
 		return EXIT_FAILURE;
