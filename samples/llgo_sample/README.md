@@ -10,7 +10,7 @@ install [llgo](https://github.com/goplus/llgo) first
 ### linux 
 
 ```bash
-./run.sh
+./run.sh -b
 ```
 
 ### windows | mac
