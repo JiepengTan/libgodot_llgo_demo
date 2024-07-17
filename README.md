@@ -1,4 +1,4 @@
-# libgodot llgo demo
+# libgodot demo
 
 this repo is base on the [libgodot](https://github.com/migeran/libgodot_project): 
 ## setup environment
@@ -12,36 +12,9 @@ cd libgodot_llgo_demo
 git submodule update --init --progress --depth 1 godot
 ```
 
-## windows
-```bash
+mac user should install [Vulkan SDK](https://sdk.lunarg.com/sdk/download/latest/mac/vulkan-sdk.dmg) first
 
-# build godot
-build_libgodot.bat
 
-# build demo
-cd samples/cpp_sample
-mkdir build
-cmake -S . -B build -G Ninja
-cd build
-ninja
+## [cpp example](/samples/cpp_sample/README.md)
 
-# run demo
-sample.exe
-```
-
-## linux or mac
-mac should install[Vulkan SDK](https://sdk.lunarg.com/sdk/download/latest/mac/vulkan-sdk.dmg)first
-
-```bash
-# build godot
-./build_libgodot.sh
-
-# build demo
-cd samples/cpp_sample
-mkdir -p build && cd build
-cmake .. && make
-
-# run demo
-./sample
-```
-
+## [llgo example](/samples/llgo_sample/README.md)
