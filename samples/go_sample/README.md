@@ -4,7 +4,7 @@ Baisc demo from [godot-go-demo-projects](https://github.com/godot-go/godot-go-de
 
 # How to run it
 ```
-make && make run
+./run.sh
 ```
 
 # Credit

@@ -16,4 +16,4 @@ require (
 	golang.org/x/text v0.12.0 // indirect
 )
 
-replace github.com/godot-go/godot-go => github.com/jiepengtan/godot-go v0.0.0-20240721090708-f9d9c4aee210
+replace github.com/godot-go/godot-go => github.com/jiepengtan/godot-go v0.0.0-20240721095236-cf40fdcc2517
