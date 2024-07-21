@@ -8,11 +8,12 @@ import (
 )
 
 func main() {
+	println("Hello, libgodot llgo!")
 	var instance c.Pointer
 	strs := make([]*c.Char, 7)
 	strs[0] = c.Str("aaaa")
 	strs[1] = c.Str("--path")
-	strs[2] = c.Str("../../project/")
+	strs[2] = c.Str("../../go_sample/project")
 	strs[3] = c.Str("--rendering-method")
 	strs[4] = c.Str("gl_compatibility")
 	strs[5] = c.Str("--rendering-driver")

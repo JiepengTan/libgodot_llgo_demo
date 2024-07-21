@@ -19,5 +19,6 @@ export LD_LIBRARY_PATH="$build_dir:$LD_LIBRARY_PATH"
 nm -D build/libgodot.so > build/api_dump.txt
 
 cd logic
+GODEBUG=sbrk=1,gctrace=1,asyncpreemptoff=1,cgocheck=0,invalidptr=1,clobberfree=1,tracebackancestors=0 \
 llgo run .
 cd ..
