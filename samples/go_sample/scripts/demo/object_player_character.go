@@ -61,9 +61,6 @@ func (h *PlayerCharacter) V_Set(name string, value Variant) bool {
 		h.direction = value.ToVector2()
 		vDir := NewVariantVector2(h.direction)
 		defer vDir.Destroy()
-		log.Info("V_Set",
-			zap.Any("direction", Stringify(vDir)),
-		)
 		return true
 	}
 	return false
@@ -73,9 +70,6 @@ func (h *PlayerCharacter) V_Get(name string) (Variant, bool) {
 	switch name {
 	case "direction":
 		vDir := NewVariantVector2(h.direction)
-		log.Info("V_Get",
-			zap.Any("direction", Stringify(vDir)),
-		)
 		return vDir, true
 	}
 	return Variant{}, false
@@ -105,10 +99,6 @@ func (h *PlayerCharacter) V_Input(refInputEvent RefInputEvent) {
 	//   h.direction = input.GetVector(uiLeft, uiRight, uiUp, uiDown, -1.0)
 	// }
 	dir := h.input.GetVector(uiLeft, uiRight, uiUp, uiDown, -1.0)
-	vDir := NewVariantVector2(dir)
-	log.Info("V_Input",
-		zap.Any("dir", Stringify(vDir)),
-	)
 	h.SetDirection(dir)
 }
 
