@@ -2,27 +2,14 @@ package demo
 
 import (
 	. "github.com/godot-go/godot-go/pkg/builtin"
-	. "github.com/godot-go/godot-go/pkg/constant"
 	. "github.com/godot-go/godot-go/pkg/core"
 	. "github.com/godot-go/godot-go/pkg/ffi"
 	. "github.com/godot-go/godot-go/pkg/gdclassimpl"
-	"github.com/godot-go/godot-go/pkg/log"
-	"go.uber.org/zap"
 )
 
 func RegisterClassHUD() {
 	ClassDBRegisterClass[*HUD](&HUD{}, []GDExtensionPropertyInfo{}, nil, func(t GDClass) {
-		// virtuals
-		ClassDBBindMethodVirtual(t, "V_OnStartButtonPressed", "_on_StartButton_pressed", nil, nil)
-		ClassDBBindMethodVirtual(t, "V_OnMessageTimerTimeout", "_on_MessageTimer_timeout", nil, nil)
-
-		// properties
-		ClassDBBindMethod(t, "ShowMessage", "show_message", []string{"text"}, nil)
-		ClassDBBindMethod(t, "ShowGameOver", "show_game_over", nil, nil)
-		ClassDBBindMethod(t, "ShowGameOverAwaitMessageTimerTimeout", "show_game_over_await_message_timer_timeout", nil, nil)
-		ClassDBBindMethod(t, "ShowGameOverAwaitSceneTreeTimerTimeout", "show_game_over_await_scene_tree_timer_timeout", nil, nil)
-		ClassDBBindMethod(t, "UpdateScore", "update_score", []string{"score"}, nil)
-
+		ClassDBAutoRegister[*HUD](t)
 		// signals
 		ClassDBAddSignal(t, "start_game")
 	})
@@ -56,94 +43,54 @@ func (c *HUD) getStartButton() Button {
 	return ObjectCastToGeneric[Button](c.GetNode_StrExt("StartButton"))
 }
 
+func (c *HUD) showMessage_StrExt(text string) {
+	gameOverMessage := NewVariantGoString(text)
+	defer gameOverMessage.Destroy()
+	c.ShowMessage(gameOverMessage)
+}
+
 func (c *HUD) ShowMessage(text Variant) {
 	// $MessageLabel.text = text
-	messageLabel := c.getMessageLabel()
-	gdsText := text.ToString()
-	defer gdsText.Destroy()
-	messageLabel.SetText(gdsText)
-
+	c.getMessageLabel().SetText_StrExt(text.ToGoString())
 	// $MessageLabel.show()
-	messageLabel.Show()
-
+	c.getMessageLabel().Show()
 	// $MessageTimer.start()
-	messageTimer := c.getMessageTimer()
-	messageTimer.Start(-1)
+	c.getMessageTimer().Start(-1)
 }
 
 func (c *HUD) ShowGameOver() {
 	// show_message("Game Over")
-	gameOverMessage := NewVariantGoString("Game Over")
-	defer gameOverMessage.Destroy()
-	c.ShowMessage(gameOverMessage)
-
+	c.showMessage_StrExt("Game Over")
 	// await $MessageTimer.timeout
-	messageTimer := c.getMessageTimer()
-	gdsnTimeout := NewStringNameWithUtf8Chars("timeout")
-	defer gdsnTimeout.Destroy()
-	gdnsCallableMethodName := NewStringNameWithUtf8Chars("show_game_over_await_message_timer_timeout")
-	defer gdnsCallableMethodName.Destroy()
-	callable := NewCallableWithObjectStringName(c, gdnsCallableMethodName)
-	defer callable.Destroy()
-	err := messageTimer.Connect(gdsnTimeout, callable, OBJECT_CONNECT_FLAGS_CONNECT_ONE_SHOT)
-	if err != OK {
-		log.Panic("message timer connect failure", zap.Any("error", err))
-	}
+	DelayCallTimer(c, "show_game_over_await_message_timer_timeout", c.getMessageTimer())
 }
 
 func (c *HUD) ShowGameOverAwaitMessageTimerTimeout() {
 	// $MessageLabel.text = "Dodge the\nCreeps"
 	messageLabel := c.getMessageLabel()
-	gdsText := NewStringWithUtf8Chars("Dodge the\nCreeps")
-	defer gdsText.Destroy()
-	messageLabel.SetText(gdsText)
+	messageLabel.SetText_StrExt("Dodge the\nCreeps")
 
 	// $MessageLabel.show()
 	messageLabel.Show()
-
-	// await get_tree().create_timer(1).timeout
-	tree := c.GetTree()
-	sceneTreeTimerRef := tree.CreateTimer(1, true, false, false)
-	gdsnTimeout := NewStringNameWithUtf8Chars("timeout")
-	defer gdsnTimeout.Destroy()
-	gdnsCallableMethodName := NewStringNameWithUtf8Chars("show_game_over_await_scene_tree_timer_timeout")
-	defer gdnsCallableMethodName.Destroy()
-	callable := NewCallableWithObjectStringName(c, gdnsCallableMethodName)
-	defer callable.Destroy()
-	sceneTreeTimer := sceneTreeTimerRef.TypedPtr()
-	err := sceneTreeTimer.Connect(gdsnTimeout, callable, OBJECT_CONNECT_FLAGS_CONNECT_ONE_SHOT)
-	if err != OK {
-		log.Panic("message timer connect failure", zap.Any("error", err))
-	}
+	DelayCall(c, "show_game_over_await_scene_tree_timer_timeout", 1)
 }
 
 func (c *HUD) ShowGameOverAwaitSceneTreeTimerTimeout() {
 	// $StartButton.show()
-	startButton := c.getStartButton()
-	startButton.Show()
+	c.getStartButton().Show()
 }
 
 func (c *HUD) UpdateScore(score Variant) {
 	// $ScoreLabel.text = str(score)
-	scoreLabel := c.getScoreLabel()
-	gdsScore := score.ToString()
-	defer gdsScore.Destroy()
-	scoreLabel.SetText(gdsScore)
+	c.getScoreLabel().SetText_StrExt(score.ToGoString())
 }
 
-func (c *HUD) V_OnStartButtonPressed() {
-	// $StartButton.hide()
-	startButton := c.getStartButton()
-	startButton.Hide()
-
-	// start_game.emit()
-	gdsnStartGame := NewStringNameWithUtf8Chars("start_game")
-	defer gdsnStartGame.Destroy()
-	c.EmitSignal(gdsnStartGame)
+func (c *HUD) V_OnPressed_StartButton() {
+	c.getStartButton().Hide()
+	c.EmitSignal_StrExt("start_game")
 }
 
-func (c *HUD) V_OnMessageTimerTimeout() {
+func (c *HUD) V_OnTimeout_MessageTimer() {
 	// $MessageLabel.hide()
-	messageLabel := c.getMessageLabel()
-	messageLabel.Hide()
+	c.getMessageLabel().Hide()
 }
