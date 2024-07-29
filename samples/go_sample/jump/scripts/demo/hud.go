@@ -41,19 +41,19 @@ func (c *HUD) GetParentClassName() string {
 }
 
 func (c *HUD) getScoreLabel() Label {
-	return ObjectCastTo(c.GetNode_StrExt("ScoreLabel"), "Label").(Label)
+	return ObjectCastToGeneric[Label](c.GetNode_StrExt("ScoreLabel"))
 }
 
 func (c *HUD) getMessageLabel() Label {
-	return ObjectCastTo(c.GetNode_StrExt("MessageLabel"), "Label").(Label)
+	return ObjectCastToGeneric[Label](c.GetNode_StrExt("MessageLabel"))
 }
 
 func (c *HUD) getMessageTimer() Timer {
-	return ObjectCastTo(c.GetNode_StrExt("MessageTimer"), "Timer").(Timer)
+	return ObjectCastToGeneric[Timer](c.GetNode_StrExt("MessageTimer"))
 }
 
 func (c *HUD) getStartButton() Button {
-	return ObjectCastTo(c.GetNode_StrExt("StartButton"), "Button").(Button)
+	return ObjectCastToGeneric[Button](c.GetNode_StrExt("StartButton"))
 }
 
 func (c *HUD) ShowMessage(text Variant) {
