@@ -41,35 +41,19 @@ func (c *HUD) GetParentClassName() string {
 }
 
 func (c *HUD) getScoreLabel() Label {
-	gds := NewStringWithLatin1Chars("ScoreLabel")
-	defer gds.Destroy()
-	path := NewNodePathWithString(gds)
-	defer path.Destroy()
-	return ObjectCastTo(c.GetNode(path), "Label").(Label)
+	return ObjectCastTo(c.GetNode_StrExt("ScoreLabel"), "Label").(Label)
 }
 
 func (c *HUD) getMessageLabel() Label {
-	gds := NewStringWithLatin1Chars("MessageLabel")
-	defer gds.Destroy()
-	path := NewNodePathWithString(gds)
-	defer path.Destroy()
-	return ObjectCastTo(c.GetNode(path), "Label").(Label)
+	return ObjectCastTo(c.GetNode_StrExt("MessageLabel"), "Label").(Label)
 }
 
 func (c *HUD) getMessageTimer() Timer {
-	gds := NewStringWithLatin1Chars("MessageTimer")
-	defer gds.Destroy()
-	path := NewNodePathWithString(gds)
-	defer path.Destroy()
-	return ObjectCastTo(c.GetNode(path), "Timer").(Timer)
+	return ObjectCastTo(c.GetNode_StrExt("MessageTimer"), "Timer").(Timer)
 }
 
 func (c *HUD) getStartButton() Button {
-	gds := NewStringWithLatin1Chars("StartButton")
-	defer gds.Destroy()
-	path := NewNodePathWithString(gds)
-	defer path.Destroy()
-	return ObjectCastTo(c.GetNode(path), "Button").(Button)
+	return ObjectCastTo(c.GetNode_StrExt("StartButton"), "Button").(Button)
 }
 
 func (c *HUD) ShowMessage(text Variant) {
