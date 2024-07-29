@@ -162,6 +162,7 @@ func (h *PlayerCharacter) updateSprite(dqir Vector2) {
 	ca := a.GetCurrentAnimation()
 	pca := &ca
 
+	//println("typeName ", pca.ToUtf8(), "x ", int(x), "y ", int(y))
 	if x > 0 {
 		if !pca.Equal_StringName(walkRight) {
 			a.Play(walkRight, -1, 1.0, false)

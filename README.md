@@ -18,4 +18,4 @@ mac user should install [Vulkan SDK](https://sdk.lunarg.com/sdk/download/latest/
 
 1. [cpp example](/samples/cpp_sample/README.md)
 2. [llgo example](/samples/llgo_sample/README.md)
-3. [go example](/samples/go_sample/README.md)
+3. [go example](/samples/go_sample/topdown/README.md)

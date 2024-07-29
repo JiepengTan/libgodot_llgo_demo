@@ -8,7 +8,7 @@ import (
 )
 
 func main() {
-	println("Hello, libgodot llgo!")
+	println("Hello, libgodot llgo111!")
 	var instance c.Pointer
 	strs := make([]*c.Char, 7)
 	strs[0] = c.Str("aaaa")
