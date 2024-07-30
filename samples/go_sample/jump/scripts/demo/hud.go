@@ -2,34 +2,20 @@ package demo
 
 import (
 	. "github.com/godot-go/godot-go/pkg/builtin"
-	. "github.com/godot-go/godot-go/pkg/core"
 	. "github.com/godot-go/godot-go/pkg/gdclassimpl"
 )
 
 // @autobind signal "start_game"
 type HUD struct {
 	CanvasLayerImpl
-	StartButton Button `godot:"StartButton"`
+	ScoreLabel   Label  `godot:"ScoreLabel"`
+	MessageLabel Label  `godot:"MessageLabel"`
+	MessageTimer Timer  `godot:"MessageTimer"`
+	StartButton  Button `godot:"StartButton"`
 }
 
 func (pself *HUD) GetSignals() []string {
 	return []string{"start_game"}
-}
-
-func (pself *HUD) getScoreLabel() Label {
-	return GetNode[Label](pself, "ScoreLabel")
-}
-
-func (pself *HUD) getMessageLabel() Label {
-	return GetNode[Label](pself, "MessageLabel")
-}
-
-func (pself *HUD) getMessageTimer() Timer {
-	return GetNode[Timer](pself, "MessageTimer")
-}
-
-func (pself *HUD) getStartButton() Button {
-	return GetNode[Button](pself, "StartButton")
 }
 
 func (pself *HUD) showMessage_StrExt(text string) {
@@ -40,46 +26,44 @@ func (pself *HUD) showMessage_StrExt(text string) {
 
 func (pself *HUD) ShowMessage(text Variant) {
 	// $MessageLabel.text = text
-	pself.getMessageLabel().SetText_StrExt(text.ToGoString())
+	pself.MessageLabel.SetText_StrExt(text.ToGoString())
 	// $MessageLabel.show()
-	pself.getMessageLabel().Show()
+	pself.MessageLabel.Show()
 	// $MessageTimer.start()
-	pself.getMessageTimer().Start(-1)
+	pself.MessageTimer.Start(-1)
 }
 
 func (pself *HUD) ShowGameOver() {
 	// show_message("Game Over")
 	pself.showMessage_StrExt("Game Over")
 	// await $MessageTimer.timeout
-	DelayCallTimer(pself, "show_game_over_await_message_timer_timeout", pself.getMessageTimer())
+	DelayCallTimer(pself, "show_game_over_await_message_timer_timeout", pself.MessageTimer)
 }
 
 func (pself *HUD) ShowGameOverAwaitMessageTimerTimeout() {
 	// $MessageLabel.text = "Dodge the\nCreeps"
-	messageLabel := pself.getMessageLabel()
-	messageLabel.SetText_StrExt("Dodge the\nCreeps")
-
+	pself.MessageLabel.SetText_StrExt("Dodge the\nCreeps")
 	// $MessageLabel.show()
-	messageLabel.Show()
+	pself.MessageLabel.Show()
 	DelayCall(pself, "show_game_over_await_scene_tree_timer_timeout", 1)
 }
 
 func (pself *HUD) ShowGameOverAwaitSceneTreeTimerTimeout() {
 	// $StartButton.show()
-	pself.getStartButton().Show()
+	pself.StartButton.Show()
 }
 
 func (pself *HUD) UpdateScore(score Variant) {
 	// $ScoreLabel.text = str(score)
-	pself.getScoreLabel().SetText_StrExt(score.ToGoString())
+	pself.ScoreLabel.SetText_StrExt(score.ToGoString())
 }
 
-func (pself *HUD) V_OnPressed_StartButton() {
-	pself.getStartButton().Hide()
+func (pself *HUD) V_on_StartButton_pressed() {
+	pself.StartButton.Hide()
 	pself.EmitSignal_StrExt("start_game")
 }
 
-func (pself *HUD) V_OnTimeout_MessageTimer() {
+func (pself *HUD) V_on_MessageTimer_timeout() {
 	// $MessageLabel.hide()
-	pself.getMessageLabel().Hide()
+	pself.MessageLabel.Hide()
 }
