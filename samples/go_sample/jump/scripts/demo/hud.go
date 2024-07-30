@@ -17,22 +17,23 @@ func RegisterClassHUD() {
 
 type HUD struct {
 	CanvasLayerImpl
+	StartButton Button `godot:"StartButton"`
 }
 
 func (c *HUD) getScoreLabel() Label {
-	return ObjectCastToGeneric[Label](c.GetNode_StrExt("ScoreLabel"))
+	return GetNode[Label](c, "ScoreLabel")
 }
 
 func (c *HUD) getMessageLabel() Label {
-	return ObjectCastToGeneric[Label](c.GetNode_StrExt("MessageLabel"))
+	return GetNode[Label](c, "MessageLabel")
 }
 
 func (c *HUD) getMessageTimer() Timer {
-	return ObjectCastToGeneric[Timer](c.GetNode_StrExt("MessageTimer"))
+	return GetNode[Timer](c, "MessageTimer")
 }
 
 func (c *HUD) getStartButton() Button {
-	return ObjectCastToGeneric[Button](c.GetNode_StrExt("StartButton"))
+	return GetNode[Button](c, "StartButton")
 }
 
 func (c *HUD) showMessage_StrExt(text string) {
