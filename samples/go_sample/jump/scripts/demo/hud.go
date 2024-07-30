@@ -19,14 +19,6 @@ type HUD struct {
 	CanvasLayerImpl
 }
 
-func (c *HUD) GetClassName() string {
-	return "HUD"
-}
-
-func (c *HUD) GetParentClassName() string {
-	return "CanvasLayer"
-}
-
 func (c *HUD) getScoreLabel() Label {
 	return ObjectCastToGeneric[Label](c.GetNode_StrExt("ScoreLabel"))
 }
