@@ -20,70 +20,70 @@ type HUD struct {
 	StartButton Button `godot:"StartButton"`
 }
 
-func (c *HUD) getScoreLabel() Label {
-	return GetNode[Label](c, "ScoreLabel")
+func (pself *HUD) getScoreLabel() Label {
+	return GetNode[Label](pself, "ScoreLabel")
 }
 
-func (c *HUD) getMessageLabel() Label {
-	return GetNode[Label](c, "MessageLabel")
+func (pself *HUD) getMessageLabel() Label {
+	return GetNode[Label](pself, "MessageLabel")
 }
 
-func (c *HUD) getMessageTimer() Timer {
-	return GetNode[Timer](c, "MessageTimer")
+func (pself *HUD) getMessageTimer() Timer {
+	return GetNode[Timer](pself, "MessageTimer")
 }
 
-func (c *HUD) getStartButton() Button {
-	return GetNode[Button](c, "StartButton")
+func (pself *HUD) getStartButton() Button {
+	return GetNode[Button](pself, "StartButton")
 }
 
-func (c *HUD) showMessage_StrExt(text string) {
+func (pself *HUD) showMessage_StrExt(text string) {
 	gameOverMessage := NewVariantGoString(text)
 	defer gameOverMessage.Destroy()
-	c.ShowMessage(gameOverMessage)
+	pself.ShowMessage(gameOverMessage)
 }
 
-func (c *HUD) ShowMessage(text Variant) {
+func (pself *HUD) ShowMessage(text Variant) {
 	// $MessageLabel.text = text
-	c.getMessageLabel().SetText_StrExt(text.ToGoString())
+	pself.getMessageLabel().SetText_StrExt(text.ToGoString())
 	// $MessageLabel.show()
-	c.getMessageLabel().Show()
+	pself.getMessageLabel().Show()
 	// $MessageTimer.start()
-	c.getMessageTimer().Start(-1)
+	pself.getMessageTimer().Start(-1)
 }
 
-func (c *HUD) ShowGameOver() {
+func (pself *HUD) ShowGameOver() {
 	// show_message("Game Over")
-	c.showMessage_StrExt("Game Over")
+	pself.showMessage_StrExt("Game Over")
 	// await $MessageTimer.timeout
-	DelayCallTimer(c, "show_game_over_await_message_timer_timeout", c.getMessageTimer())
+	DelayCallTimer(pself, "show_game_over_await_message_timer_timeout", pself.getMessageTimer())
 }
 
-func (c *HUD) ShowGameOverAwaitMessageTimerTimeout() {
+func (pself *HUD) ShowGameOverAwaitMessageTimerTimeout() {
 	// $MessageLabel.text = "Dodge the\nCreeps"
-	messageLabel := c.getMessageLabel()
+	messageLabel := pself.getMessageLabel()
 	messageLabel.SetText_StrExt("Dodge the\nCreeps")
 
 	// $MessageLabel.show()
 	messageLabel.Show()
-	DelayCall(c, "show_game_over_await_scene_tree_timer_timeout", 1)
+	DelayCall(pself, "show_game_over_await_scene_tree_timer_timeout", 1)
 }
 
-func (c *HUD) ShowGameOverAwaitSceneTreeTimerTimeout() {
+func (pself *HUD) ShowGameOverAwaitSceneTreeTimerTimeout() {
 	// $StartButton.show()
-	c.getStartButton().Show()
+	pself.getStartButton().Show()
 }
 
-func (c *HUD) UpdateScore(score Variant) {
+func (pself *HUD) UpdateScore(score Variant) {
 	// $ScoreLabel.text = str(score)
-	c.getScoreLabel().SetText_StrExt(score.ToGoString())
+	pself.getScoreLabel().SetText_StrExt(score.ToGoString())
 }
 
-func (c *HUD) V_OnPressed_StartButton() {
-	c.getStartButton().Hide()
-	c.EmitSignal_StrExt("start_game")
+func (pself *HUD) V_OnPressed_StartButton() {
+	pself.getStartButton().Hide()
+	pself.EmitSignal_StrExt("start_game")
 }
 
-func (c *HUD) V_OnTimeout_MessageTimer() {
+func (pself *HUD) V_OnTimeout_MessageTimer() {
 	// $MessageLabel.hide()
-	c.getMessageLabel().Hide()
+	pself.getMessageLabel().Hide()
 }
