@@ -3,21 +3,17 @@ package demo
 import (
 	. "github.com/godot-go/godot-go/pkg/builtin"
 	. "github.com/godot-go/godot-go/pkg/core"
-	. "github.com/godot-go/godot-go/pkg/ffi"
 	. "github.com/godot-go/godot-go/pkg/gdclassimpl"
 )
 
-func RegisterClassHUD() {
-	ClassDBRegisterClass[*HUD](&HUD{}, []GDExtensionPropertyInfo{}, nil, func(t GDClass) {
-		ClassDBAutoRegister[*HUD](t)
-		// signals
-		ClassDBAddSignal(t, "start_game")
-	})
-}
-
+// @autobind signal "start_game"
 type HUD struct {
 	CanvasLayerImpl
 	StartButton Button `godot:"StartButton"`
+}
+
+func (pself *HUD) GetSignals() []string {
+	return []string{"start_game"}
 }
 
 func (pself *HUD) getScoreLabel() Label {

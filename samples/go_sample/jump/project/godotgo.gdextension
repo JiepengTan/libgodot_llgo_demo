@@ -1,6 +1,6 @@
 [configuration]
 
-entry_symbol = "GodotGoDemo2DDodgeTheCreepsInit"
+entry_symbol = "GdExtentionEnterPoint"
 compatibility_minimum = 4.1
 
 [libraries]
