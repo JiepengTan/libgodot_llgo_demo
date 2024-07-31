@@ -2,3 +2,8 @@
 	path = godot
 	url = git@github.com:JiepengTan/godot.git
 	branch = libgodot_llgo
+[submodule "godot-go"]
+	path = godot-go
+	url = git@github.com:JiepengTan/godot-go.git
+	branch = cgo
+
