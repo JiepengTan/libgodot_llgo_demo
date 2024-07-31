@@ -16,4 +16,4 @@ require (
 	golang.org/x/text v0.12.0 // indirect
 )
 
-replace github.com/godot-go/godot-go => /home/tanjp/projects/godot/godot-go
+replace github.com/godot-go/godot-go => ../../../godot-go
