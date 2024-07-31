@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://cy3drp5y23cr5"]
+[gd_scene load_steps=27 format=3 uid="uid://cy3drp5y23cr5"]
 
 [ext_resource type="Texture2D" uid="uid://bh2i2pbd72n30" path="res://Assets/Sprites/GroundBlock.png" id="1_grrf0"]
 [ext_resource type="Texture2D" uid="uid://8as4lix1a8pr" path="res://Assets/Sprites/HardBlock.png" id="2_enfcy"]
@@ -21,6 +21,7 @@
 [ext_resource type="Texture2D" uid="uid://ggrv7avq2vw" path="res://Assets/Sprites/Bush2.png" id="18_4fjmu"]
 [ext_resource type="Texture2D" uid="uid://j6grr7g688fn" path="res://Assets/Sprites/Bush3.png" id="19_spf1u"]
 [ext_resource type="Texture2D" uid="uid://75uhio5lh74v" path="res://Assets/Sprites/Castle.png" id="21_vdfgd"]
+[ext_resource type="PackedScene" uid="uid://bpy3r3x21vpnj" path="res://Scenes/collectable_coin.tscn" id="22_oyqei"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_8xjng"]
 texture = ExtResource("1_grrf0")
@@ -518,3 +519,7 @@ curve = SubResource("Curve2D_px65u")
 position = Vector2(0, -8)
 rotation = -0.876058
 rotates = false
+
+[node name="CollectableCoin" parent="." instance=ExtResource("22_oyqei")]
+position = Vector2(-165, 66)
+script = null
