@@ -4,7 +4,7 @@ import "C"
 import (
 	"unsafe"
 
-	"godot-go-demo-projects/2d/dodgethecreep/scripts/autogen"
+	"godot-go-demo/scripts/autogen"
 
 	. "github.com/godot-go/godot-go/pkg/core"
 	. "github.com/godot-go/godot-go/pkg/ffi"

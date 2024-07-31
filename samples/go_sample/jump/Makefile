@@ -10,13 +10,13 @@ OUTPUT_PATH=project/lib
 TEST_MAIN=main.go
 
 ifeq ($(GOOS),windows)
-	TEST_BINARY_PATH=$(OUTPUT_PATH)/libgodotgo-2ddodgethecreeps-windows-$(GOARCH).dll
+	TEST_BINARY_PATH=$(OUTPUT_PATH)/libgodotgo-demo-windows-$(GOARCH).dll
 else ifeq ($(GOOS),darwin)
-	TEST_BINARY_PATH=$(OUTPUT_PATH)/libgodotgo-2ddodgethecreeps-macos-$(GOARCH).framework
+	TEST_BINARY_PATH=$(OUTPUT_PATH)/libgodotgo-demo-macos-$(GOARCH).framework
 else ifeq ($(GOOS),linux)
-	TEST_BINARY_PATH=$(OUTPUT_PATH)/libgodotgo-2ddodgethecreeps-linux-$(GOARCH).so
+	TEST_BINARY_PATH=$(OUTPUT_PATH)/libgodotgo-demo-linux-$(GOARCH).so
 else
-	TEST_BINARY_PATH=$(OUTPUT_PATH)/libgodotgo-2ddodgethecreeps-$(GOOS)-$(GOARCH).so
+	TEST_BINARY_PATH=$(OUTPUT_PATH)/libgodotgo-demo-$(GOOS)-$(GOARCH).so
 endif
 
 .PHONY: goenv build clean run

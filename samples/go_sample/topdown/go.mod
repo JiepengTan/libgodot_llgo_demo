@@ -1,4 +1,4 @@
-module libgodot/go_sample
+module godot-go-demo
 
 go 1.21.4
 

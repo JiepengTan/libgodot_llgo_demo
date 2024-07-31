@@ -1,4 +1,4 @@
-module godot-go-demo-projects/2d/dodgethecreep
+module godot-go-demo
 
 go 1.21.4
 

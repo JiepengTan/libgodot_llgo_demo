@@ -1,6 +1,6 @@
 [configuration]
 
-entry_symbol = "GdExtentionEnterPoint"
+entry_symbol = "GodotGoDemo2DTopDownInit"
 compatibility_minimum = 4.1
 
 [libraries]

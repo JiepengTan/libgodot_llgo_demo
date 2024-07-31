@@ -2,7 +2,7 @@ package main
 
 import "C"
 import (
-	"libgodot/go_sample/scripts/demo"
+	"godot-go-demo/scripts/demo"
 	"unsafe"
 
 	"github.com/godot-go/godot-go/pkg/core"
