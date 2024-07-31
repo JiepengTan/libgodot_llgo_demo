@@ -1,6 +1,6 @@
-# libgodot go-sample  
+# libgodot go-sample  Mario
 
-Baisc demo from [godot-go-demo-projects](https://github.com/godotengine/godot-demo-projects/tree/master/2d/dodge_the_creeps
+Baisc demo from [MarioBrosTutorial](https://github.com/wojciech-bilicki/MarioBrosTutorial
 )
 
 # How to run it
@@ -10,4 +10,3 @@ Baisc demo from [godot-go-demo-projects](https://github.com/godotengine/godot-de
 
 # Credit
 
-* Tileset pulled from [Free RPG Asset Pack](https://biloumaster.itch.io/free-rpg-asset)
