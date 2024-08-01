@@ -17,7 +17,6 @@ func main() {
 
 //export GdExtentionEnterPoint
 func GdExtentionEnterPoint(p_get_proc_address unsafe.Pointer, p_library unsafe.Pointer, r_initialization unsafe.Pointer) bool {
-	log.Debug("GdExtentionEnterPoint called")
 	initObj := NewInitObject(
 		(GDExtensionInterfaceGetProcAddress)(p_get_proc_address),
 		(GDExtensionClassLibraryPtr)(p_library),

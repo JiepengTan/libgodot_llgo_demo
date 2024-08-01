@@ -11,4 +11,6 @@ import (
 func RegisterSceneInitializer() {
 	core.AutoRegisterClassDB[*demo.CollectableCoin]()
 	core.AutoRegisterClassDB[*demo.UI]()
+	core.AutoRegisterClassDB[*demo.LevelManager]()
+	core.AutoRegisterClassDB[*demo.Player]()
 }

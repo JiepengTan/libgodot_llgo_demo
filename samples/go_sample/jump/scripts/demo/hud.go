@@ -8,10 +8,10 @@ import (
 // @autobind signal "start_game"
 type HUD struct {
 	CanvasLayerImpl
-	ScoreLabel   Label  `godot:"ScoreLabel"`
-	MessageLabel Label  `godot:"MessageLabel"`
-	MessageTimer Timer  `godot:"MessageTimer"`
-	StartButton  Button `godot:"StartButton"`
+	ScoreLabel   Label  `gdbind:"ScoreLabel"`
+	MessageLabel Label  `gdbind:"MessageLabel"`
+	MessageTimer Timer  `gdbind:"MessageTimer"`
+	StartButton  Button `gdbind:"StartButton"`
 }
 
 func (pself *HUD) GetSignals() []string {

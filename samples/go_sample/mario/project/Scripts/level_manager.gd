@@ -1,6 +1,6 @@
 extends Node
 
-class_name LevelManager
+class_name LevelManagerOld
 
 
 var points = 0
