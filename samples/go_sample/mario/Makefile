@@ -23,7 +23,6 @@ endif
 
 goenv:
 	go env
-
 build: goenv
 	CGO_ENABLED=1 \
 	GOOS=$(GOOS) \
@@ -32,6 +31,14 @@ build: goenv
 	CGO_LDFLAGS='-Og -g3 -g' \
 	go build -gcflags=all="-N -l" -tags tools -buildmode=c-shared -x -trimpath -o "$(TEST_BINARY_PATH)" $(TEST_MAIN)
 
+buildfast: goenv
+	CGO_ENABLED=1 \
+	GOOS=$(GOOS) \
+	GOARCH=$(GOARCH) \
+	CGO_CFLAGS='-Og -g3 -g -DX86=1 -fPIC' \
+	CGO_LDFLAGS='-Og -g3 -g' \
+	go build -tags tools -trimpath -o "$(TEST_BINARY_PATH)" $(TEST_MAIN)
+	
 clean:
 	rm -f project/lib/libgodotgo-*
 

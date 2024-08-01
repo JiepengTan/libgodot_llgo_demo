@@ -9,8 +9,6 @@ import (
 )
 
 func RegisterSceneInitializer() {
-	registerClass_CollectableCoin()
-}
-func registerClass_CollectableCoin() {
 	core.AutoRegisterClassDB[*demo.CollectableCoin]()
+	core.AutoRegisterClassDB[*demo.UI]()
 }
