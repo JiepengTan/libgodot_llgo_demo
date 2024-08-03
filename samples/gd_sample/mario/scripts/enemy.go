@@ -4,10 +4,6 @@ import (
 	"grow.graphics/gd"
 )
 
-type Pipe struct {
-	gd.Class[Pipe, gd.Area2D] `gd:"Enemy"`
-}
-
 type Enemy struct {
 	gd.Class[Enemy, gd.Area2D] `gd:"Enemy"`
 

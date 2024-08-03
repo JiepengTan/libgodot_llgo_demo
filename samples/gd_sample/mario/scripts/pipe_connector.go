@@ -12,8 +12,7 @@ type PipeConnector struct {
 
 func (pself *PipeConnector) OnEntranceBodyEntered(body gd.Node2D) {
 	pself.SceneData.ReturnPoint = pself.ReturnPoint
-	player, ok := body.(*Player)
-	if ok {
+	if player, ok := gd.As[*Player](pself.Temporary, body); ok {
 		player.HandlePipeConnectorEntranceCollision()
 	}
 }
