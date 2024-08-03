@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://cy3drp5y23cr5"]
+[gd_scene load_steps=25 format=3 uid="uid://cy3drp5y23cr5"]
 
 [ext_resource type="Texture2D" uid="uid://bh2i2pbd72n30" path="res://Assets/Sprites/GroundBlock.png" id="1_grrf0"]
 [ext_resource type="Texture2D" uid="uid://8as4lix1a8pr" path="res://Assets/Sprites/HardBlock.png" id="2_enfcy"]
@@ -9,7 +9,6 @@
 [ext_resource type="PackedScene" uid="uid://bqgvnrltmnun3" path="res://Scenes/mystery_box.tscn" id="8_rp7hu"]
 [ext_resource type="PackedScene" uid="uid://njy08hqpoa5r" path="res://Scenes/ui.tscn" id="9_2yjcx"]
 [ext_resource type="PackedScene" uid="uid://cxakda6lnpdo1" path="res://Scenes/goomba.tscn" id="9_gr86r"]
-[ext_resource type="Script" path="res://Scripts/level_manager.gd" id="9_r77t1"]
 [ext_resource type="PackedScene" uid="uid://do8um68u2qr21" path="res://Scenes/fall_down_area.tscn" id="11_2usbf"]
 [ext_resource type="PackedScene" uid="uid://dscmko5h0dhso" path="res://Scenes/flag.tscn" id="11_hf8cw"]
 [ext_resource type="Texture2D" uid="uid://cq6tqakba8cj0" path="res://Assets/Sprites/Cloud1.png" id="12_7uet7"]
@@ -64,10 +63,7 @@ castle_path = NodePath("../Path2D/PathFollow2D")
 
 [node name="UI" parent="." instance=ExtResource("9_2yjcx")]
 
-[node name="LevelManager" type="Node" parent="." node_paths=PackedStringArray("ui", "player") groups=["level_manager"]]
-script = ExtResource("9_r77t1")
-ui = NodePath("../UI")
-player = NodePath("../Player")
+[node name="LevelManager" type="LevelManager" parent="." groups=["level_manager"]]
 
 [node name="Environment" type="Node" parent="."]
 
@@ -522,3 +518,5 @@ curve = SubResource("Curve2D_px65u")
 position = Vector2(0, -8)
 rotation = -0.876058
 rotates = false
+
+[node name="SceneData" type="SceneData" parent="."]

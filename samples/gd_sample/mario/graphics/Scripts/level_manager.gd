@@ -1,12 +1,12 @@
 extends Node
 
-class_name LevelManager
+class_name LevelManagerOld
 
 
 var points = 0
 var coins = 0
 
-@export var ui: UI
+@export var ui: UIOld
 @export var player: Player
 
 # Called when the node enters the scene tree for the first time.

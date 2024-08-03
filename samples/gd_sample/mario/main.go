@@ -13,4 +13,6 @@ func main() {
 		panic("could not link to godot")
 	}
 	gd.Register[scripts.UI](godot)
+	gd.Register[scripts.SceneData](godot)
+	gd.Register[scripts.LevelManager](godot)
 }

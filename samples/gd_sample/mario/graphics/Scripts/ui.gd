@@ -1,6 +1,6 @@
 extends CanvasLayer
 
-class_name UI
+class_name UIOld
 
 @onready var center_container = $MarginContainer/CenterContainer
 
