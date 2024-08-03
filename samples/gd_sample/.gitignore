@@ -1,0 +1,5 @@
+go.work
+*.so
+*.dylib
+*library.gdextension
+go.work.sum
