@@ -11,7 +11,7 @@ type CollectableCoin struct {
 
 func (pself *CollectableCoin) V_on_body_entered(body Node2D) {
 	pself.QueueFree()
-	node := pself.GetTree().GetFirstNodeInGroup_StrExt("level_manager")
+	node := pself.GetTree(pself.Temporary).GetFirstNodeInGroup_StrExt("level_manager")
 	if node != nil {
 		println("V_on_body_enter find level_manager succ")
 	} else {

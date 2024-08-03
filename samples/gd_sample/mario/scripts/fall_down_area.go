@@ -9,7 +9,7 @@ type FallDownArea struct {
 }
 
 func (pself *FallDownArea) OnBodyEntered(body gd.Node) {
-	if player, ok := body.(*Player); ok {
+	if player, ok := gd.As[*Player](pself.Temporary, body); ok {
 		player.Die()
 	}
 }

@@ -12,7 +12,7 @@ type LevelManager struct {
 }
 
 func (pself *LevelManager) getUI() *UI {
-	return ObjectCastToGeneric[*UI](pself.GetTree().GetRoot().GetNode_StrExt("UI"))
+	return ObjectCastToGeneric[*UI](pself.GetTree(pself.Temporary).GetRoot().GetNode_StrExt("UI"))
 }
 
 func (pself *LevelManager) V_ready() {

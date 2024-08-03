@@ -11,17 +11,17 @@ type Brick struct {
 	Sprite2D       gd.Sprite2D       `gd:"Sprite2D"`
 }
 
-func (pself *Brick) Bump(playerMode Player.PlayerMode) {
-	if playerMode == PlayerModeSmall {
+func (pself *Brick) Bump(playerMode PlayerMode) {
+	if playerMode == SMALL {
 		pself.Block.Bump(playerMode)
 	} else if !pself.GPUParticles2D.IsEmitting() {
-		pself.SetCollisionLayerValue(5, false)
+		pself.Super().AsCollisionObject2D().SetCollisionLayerValue(5, false)
 		pself.GPUParticles2D.SetEmitting(true)
-		pself.Sprite2D.SetVisible(false)
+		pself.Sprite2D.AsCanvasItem().SetVisible(false)
 		pself.Block.CheckForEnemyCollision()
 	}
 }
 
 func (pself *Brick) OnGPUParticles2DFinished() {
-	pself.QueueFree()
+	pself.Super().AsNode().QueueFree()
 }

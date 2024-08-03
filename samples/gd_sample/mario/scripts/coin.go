@@ -2,7 +2,6 @@ package scripts
 
 import (
 	"grow.graphics/gd"
-	"grow.graphics/gd/gdnative"
 )
 
 type Coin struct {
@@ -10,8 +9,24 @@ type Coin struct {
 }
 
 func (pself *Coin) Ready() {
-	coinTween := pself.GetTree().CreateTween()
-	coinTween.TweenProperty(pself, "position", pself.Position().Add(gdnative.NewVector2(0, -40)), 0.3)
-	coinTween.Chain().TweenProperty(pself, "position", pself.Position(), 0.3)
-	coinTween.TweenCallback(pself.QueueFree)
+	coinTween := pself.Super().AsNode().GetTree(pself.Temporary).CreateTween(pself.Temporary)
+
+	dstPos := pself.Super().AsNode2D().GetPosition().Add(gd.NewVector2(0, -40))
+	coinTween.TweenProperty(
+		pself.Temporary, pself.AsObject(),
+		pself.Temporary.String("position").NodePath(pself.Temporary),
+		pself.Temporary.Variant(dstPos),
+		gd.Float(0.3))
+
+	srcPos := pself.Super().AsNode2D().GetPosition()
+	coinTween.Chain(pself.Temporary).TweenProperty(
+		pself.Temporary, pself.AsObject(),
+		pself.Temporary.String("position").NodePath(pself.Temporary),
+		pself.Temporary.Variant(srcPos),
+		gd.Float(0.3))
+	coinTween.TweenCallback(pself.Temporary, pself.Temporary.Callable(pself.DoQueueFree))
+}
+
+func (pself *Coin) DoQueueFree() {
+	pself.Super().AsNode().QueueFree()
 }

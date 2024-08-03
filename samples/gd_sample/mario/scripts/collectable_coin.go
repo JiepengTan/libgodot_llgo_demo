@@ -9,9 +9,12 @@ type CollectableCoin struct {
 }
 
 func (pself *CollectableCoin) OnBodyEntered(body gd.Node) {
-	if _, ok := body.(*Player); ok {
-		pself.QueueFree()
-		levelManager := pself.GetTree().GetFirstNodeInGroup("level_manager").(*LevelManager)
-		levelManager.OnCoinCollected()
+	if _, ok := gd.As[*Player](pself.Temporary, body); ok {
+		pself.Super().AsNode().QueueFree()
+		tree := pself.Super().AsNode().GetTree(pself.Temporary)
+		levelManagerNode := tree.GetFirstNodeInGroup(pself.Temporary, pself.Temporary.StringName("level_manager"))
+		if levelManager, ok := gd.As[*LevelManager](pself.Temporary, levelManagerNode); ok {
+			levelManager.OnCoinCollected()
+		}
 	}
 }

@@ -1,17 +1,13 @@
 package scripts
 
-import (
-	"grow.graphics/gd"
-)
-
 type CustomEnemy struct {
 	Enemy
 }
 
 func (pself *CustomEnemy) Die() {
 	pself.Enemy.Die()
-	pself.SetCollisionLayerValue(3, false)
-	pself.SetCollisionMaskValue(1, false)
-	timer := pself.GetTree().CreateTimer(1.5)
-	timer.Connect("timeout", pself.QueueFree)
+	pself.Super().AsCollisionObject2D().SetCollisionLayerValue(3, false)
+	pself.Super().AsCollisionObject2D().SetCollisionMaskValue(1, false)
+	timer := pself.GetTree(pself.Temporary).CreateTimer(pself.Temporary, 1.5, true, false, false)
+	timer.AsObject().Connect(pself.Temporary.StringName("timeout"), pself.Temporary.Callable(pself.DoQueueFree), 0)
 }
