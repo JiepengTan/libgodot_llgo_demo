@@ -1,4 +1,4 @@
-module grow.graphics/eg
+module gd-demos
 
 go 1.22.3
 
