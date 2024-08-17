@@ -1,11 +1,7 @@
 @echo off
-echo "===== build godot-dotnet ====="
-cd godot-dotnet
-IF NOT EXIST nugets (
-./build.cmd --productBuild --pushNupkgsLocal ./nugets --warnAsError false /p:GenerateGodotBindings=true
-)
 
 echo "===== build samples ====="
+cd godot-dotnet
 rd /s /q artifacts\bin\Godot.BindingsGenerator\
 cd ../Summator
 dotnet publish Extension -r win-x64 -o Game/lib
